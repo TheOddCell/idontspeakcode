@@ -1,0 +1,20 @@
+<html>
+
+<head>
+  <title>I Don't Speak Code - JS</title>
+  <script>
+    function update() {
+      eval(document.getElementById("textareaID").value);
+    }
+  </script>
+</head>
+
+<body>
+  <h1>I Don't Speak Code - JS</h1>
+  Below is a space to write JS code.<br>
+  I recomend using our <a href="/html/">HTML tester</a> instead.<br>
+  <textarea id="textareaID"></textarea><br>
+  <button onclick="update()">Run</button>
+</body>
+
+</html>
