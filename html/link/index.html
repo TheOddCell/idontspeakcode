@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <title>I Don't Speak Code - HTML + Link</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .box {
+      display: flex;
+      flex-flow: column;
+      height: 100%;
+    }
+
+    .box .row {
+      border: 1px dotted grey;
+    }
+
+    .box .row.header {
+      flex: 0 1 auto;
+    }
+
+    .box .row.content {
+      flex: 1 1 auto;
+    }
+  </style>
+  <script>
+    function updateStyle() {
+      document.getElementById("theiframe").setAttribute("src", "data:text/html," + document.getElementById("textareaID").value);
+      document.getElementById("wow-link-div").innerHTML = "link: data:text/html," + document.getElementById("textareaID").value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    };updateStyle()
+  </script>
+</head>
+
+<body>
+  <div class="row header">
+    <h1>I Don't Speak Code - HTML + Link (iframe)</h1>
+    Below is a space to write HTML code that will be shown below the textbox. See <a href="https://www.w3schools.com/html/default.asp">W3schools</a>.<br><br>
+    <div id="wow-link-div"></div><br><br>
+    <textarea id="textareaID" oninput="updateStyle()" rows="100" cols="100">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>testsite!</title>
+  </head>
+  <body>
+    <p>hello world</p>
+  </body>
+</html>
+    </textarea>
+  </div><br>
+<iframe class="row content" id="theiframe" width=1000 height=1000></iframe>
+</body>
+
+</html>

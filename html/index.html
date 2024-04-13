@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>I Don't Speak Code - CSS</title>
+  <title>I Don't Speak Code - HTML</title>
   <style>
     html,
     body {
@@ -28,8 +28,21 @@
     }
   </style>
   <script>
+    var a = 0;
     function updateStyle() {
       document.getElementById("wow-code-div").innerHTML = document.getElementById("textareaID").value;
+      if (a == 1){
+        updateLink()
+      }
+    }
+    function updateLink(){
+      a = 1;
+      document.getElementById("wow-link-div").innerHTML = "link: data:text/html," + document.getElementById("textareaID").value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    function abort(){
+      if (confirm("Are you sure? You will lose everything you have put in the textbox.")){
+        document.documentElement.innerHTML = '<html><head><title>IDSP - Please click link:</title></head><body><a href="./link">Click Here...</a></body></html>';
+      }
     }
   </script>
 </head>
@@ -38,6 +51,8 @@
   <div class="row header">
     <h1>I Don't Speak Code - HTML</h1>
     Below is a space to write HTML code that will be shown below the textbox. See <a href="https://www.w3schools.com/html/default.asp">W3schools</a><br>
+    (note: inside div. for seperate page (inside iframe), click <button onclick="abort()">here</button>.)<br>
+    <div id="wow-link-div">(for link, press <button onclick="updateLink()">here</button>.)</div><br>
     <textarea id="textareaID" oninput="updateStyle()"></textarea>
   </div><br>
   <div id="wow-code-div" class="row content"></div>

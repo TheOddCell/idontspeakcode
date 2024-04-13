@@ -3,3 +3,4 @@ plugins:
 - jekyll-remote-theme
 github:
   is_project_page: true
+title: "I Don't Speak Code"
