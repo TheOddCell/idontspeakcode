@@ -30,21 +30,29 @@
   <script>
     function updateStyle() {
       document.getElementById("theiframe").setAttribute("src", "data:text/html," + document.getElementById("textareaID").value);
-    }
-    function openInNewTab(){
-      window.open("data:text/html," + document.getElementById("textareaID").value).focus();
-    }
+      document.getElementById("wow-link-div").innerHTML = "link: data:text/html," + document.getElementById("textareaID").value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    };updateStyle()
   </script>
 </head>
 
 <body>
   <div class="row header">
-    <h1>I Don't Speak Code - HTML + Link</h1>
-    Below is a space to write HTML code that will be shown below the textbox. See <a href="https://www.w3schools.com/html/default.asp">W3schools</a><br>
-    (link available <button onclick="openInNewTab()">click here</button>)<br>
-    <textarea id="textareaID" oninput="updateStyle()"><h1>hello!</h1></textarea>
+    <h1>I Don't Speak Code - HTML + Link (iframe)</h1>
+    Below is a space to write HTML code that will be shown below the textbox. See <a href="https://www.w3schools.com/html/default.asp">W3schools</a>.<br><br>
+    <div id="wow-link-div"></div><br><br>
+    <textarea id="textareaID" oninput="updateStyle()" rows="100" cols="100">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>testsite!</title>
+  </head>
+  <body>
+    <p>hello world</p>
+  </body>
+</html>
+    </textarea>
   </div><br>
-<iframe class="row content" id="theiframe" src="data:text/html, <h1>hello!</h1>"></iframe>
+<iframe class="row content" id="theiframe" width=1000 height=1000></iframe>
 </body>
 
 </html>
