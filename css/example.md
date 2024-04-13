@@ -19,7 +19,7 @@ body {
   background-color: #389451;
 }
 ```
-Hex is a way to  represent colors. You can use this page to use a color picker. https://html-color.codes/
+Hex is a way to  represent colors. You can use this page to use a [color picker](https://g.co/kgs/U3FgD83). 
 
 ## Set font
 
