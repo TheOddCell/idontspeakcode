@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>I Don't Speak Code - HTML</title>
+  <title>I Don't Speak Code - HTML + Link</title>
   <style>
     html,
     body {
@@ -29,18 +29,22 @@
   </style>
   <script>
     function updateStyle() {
-      document.getElementById("wow-code-div").innerHTML = document.getElementById("textareaID").value;
+      document.getElementById("theiframe").setAttribute("src", "data:text/html," + document.getElementById("textareaID").value);
+    }
+    function openInNewTab(){
+      window.open("data:text/html," + document.getElementById("textareaID").value).focus();
     }
   </script>
 </head>
 
 <body>
   <div class="row header">
-    <h1>I Don't Speak Code - HTML</h1>
+    <h1>I Don't Speak Code - HTML + Link</h1>
     Below is a space to write HTML code that will be shown below the textbox. See <a href="https://www.w3schools.com/html/default.asp">W3schools</a><br>
-    <textarea id="textareaID" oninput="updateStyle()"></textarea>
+    (link available <button onclick="openInNewTab()">click here</button>)<br>
+    <textarea id="textareaID" oninput="updateStyle()"><h1>hello!</h1></textarea>
   </div><br>
-  <div id="wow-code-div" class="row content"></div>
+<iframe class="row content" id="theiframe" src="data:text/html, <h1>hello!</h1>"></iframe>
 </body>
 
 </html>
