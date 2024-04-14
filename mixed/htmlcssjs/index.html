@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="../../styles.css">
+  <title>I Don't Speak Code - Mixed - HTML + CSS + Javascript</title>
+  <script>
+    function updateLink(){
+        var htmltext = document.getElementById("HTMLtextareaID").value;
+        var titletext = document.getElementById("TITLEtextareaID").value;
+        var scripttext = document.getElementById("JStextareaID").value;
+        var csstext = document.getElementById("CSStextareaID").value;
+
+        // Create a data URL for the entire HTML content
+        var htmlContent = 
+            "<html><head><title>" + titletext + 
+            "</title><script>" + scripttext + "</scr" + "ipt>" + 
+            "<style>" + csstext + "</style></head><body>" + htmltext + "</body></html>";
+
+        var encodedHtmlContent = encodeURIComponent(htmlContent);
+
+          // Set the data URL as the href attribute of an anchor element
+        document.getElementById("wow-link-div").innerHTML = "data:text/html, " + encodedHtmlContent;
+}
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>I Don't Speak Code - Mixed - HTML + CSS + JS</h1>
+    Title of page: <input id="TITLEtextareaID" oninput="updateLink()"><br>
+    Link: <div id="wow-link-div"></div><br>
+    HTML:<br>
+    <textarea id="HTMLtextareaID" oninput="updateLink()"></textarea><br>
+    CSS:<br>
+    <textarea id="CSStextareaID" oninput="updateLink()"></textarea><br>
+    JS:<br>
+    <textarea id="JStextareaID" oninput="updateLink()"></textarea><br>
+  </div>
+</body>
+
+</html>

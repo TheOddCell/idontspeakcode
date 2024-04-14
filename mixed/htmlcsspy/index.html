@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="../../styles.css">
+  <title>I Don't Speak Code - Mixed - HTML + CSS + Python</title>
+  <script>
+    function updateLink(){
+        var htmltext = document.getElementById("HTMLtextareaID").value;
+        var titletext = document.getElementById("TITLEtextareaID").value;
+        var pytext = document.getElementById("PYtextareaID").value;
+        var csstext = document.getElementById("CSStextareaID").value;
+        /*
+        var evaluatepy = 'from pyscript import document\n' + 'import io\n' +'import sys\n' + 'def evaluate(event):\n' +
+          '    input_text = document.querySelector("#code")\n'+
+          '    code = input_text.value\n' + 
+          '    output_div = document.querySelector("#output")\n' +
+          '    stdout = io.StringIO()\n' +
+          '    sys.stdout = stdout\n' + 
+          '    result = eval(code)\n' +
+          '    sys.stdout = sys.__stdout__\n' + 
+          '    printed_output = stdout.getvalue()\n' +
+          '    output_div.innerText = str(result) + "\\n\\n" + printed_output'
+          */
+        var htmlContent = 
+            "<html><head><title>" + titletext + "</title>" + 
+            '<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css"/>' +
+            '<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></sc'+'ript>' +
+            "<style>" + csstext + "</style></head><body>" +
+            htmltext + "<py-script>"+ pytext + "</py-script></body></html>";
+
+        var encodedHtmlContent = encodeURIComponent(htmlContent);
+
+          // Set the data URL as the href attribute of an anchor element
+        document.getElementById("wow-link-div").innerHTML = "data:text/html, " + encodedHtmlContent;
+}
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>I Don't Speak Code - Mixed - HTML + CSS + Python (<a href="https://pyscript.net/">PyScript</a>)</h1>
+    Title of page: <input id="TITLEtextareaID" oninput="updateLink()"><br>
+    Link: <div id="wow-link-div"></div><br>
+    HTML:<br>
+    <textarea id="HTMLtextareaID" oninput="updateLink()"></textarea><br>
+    CSS:<br>
+    <textarea id="CSStextareaID" oninput="updateLink()"></textarea><br>
+    Python: <br>
+    <textarea id="PYtextareaID" oninput="updateLink()"></textarea><br>
+  </div>
+</body>
+
+</html>
