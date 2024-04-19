@@ -7,4 +7,3 @@ use my [HTML](http://idsc.oddcell.ca/html), [JS](http://idsc.oddcell.ca/js), [CS
 
 for mixed repls (html + js + css) use [this link](http://idsc.oddcell.ca/mixed).
 
-[my main page](http://oddcell.ca/)
