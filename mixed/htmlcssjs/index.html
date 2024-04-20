@@ -4,6 +4,11 @@
   <link rel="stylesheet" href="../../styles.css">
   <title>I Don't Speak Code - Mixed - HTML + CSS + Javascript</title>
   <script>
+    Object.defineProperty(window, 'easter', {
+    get: function () {
+      console.log("wow: new(s) api soon!");
+      return "HOW??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????"
+    }});
     function updateLink(){
         var htmltext = document.getElementById("HTMLtextareaID").value;
         var titletext = document.getElementById("TITLEtextareaID").value;
@@ -21,6 +26,28 @@
           // Set the data URL as the href attribute of an anchor element
         document.getElementById("wow-link-div").innerHTML = "data:text/html, " + encodedHtmlContent;
 }
+
+function download() {
+  var htmltext = document.getElementById("HTMLtextareaID").value;
+  var titletext = document.getElementById("TITLEtextareaID").value;
+  var scripttext = document.getElementById("JStextareaID").value;
+  var csstext = document.getElementById("CSStextareaID").value;
+  var htmlContent = 
+    "<html><head><title>" + titletext + 
+    "</title><script>" + scripttext + "</scr" + "ipt>" + 
+    "<style>" + csstext + "</style></head><body>" + htmltext + "</body></html>";
+
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(htmlContent));
+  element.setAttribute('download', prompt("Name of file?", "thing.html"));
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
   </script>
 </head>
 
@@ -29,6 +56,7 @@
     <h1>I Don't Speak Code - Mixed - HTML + CSS + JS</h1>
     Title of page: <input id="TITLEtextareaID" oninput="updateLink()"><br>
     Link: <div id="wow-link-div"></div><br>
+    <button onclick="download()">Download</button><br><br>
     HTML:<br>
     <textarea id="HTMLtextareaID" oninput="updateLink()"></textarea><br>
     CSS:<br>

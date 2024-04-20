@@ -4,6 +4,18 @@
   <link rel="stylesheet" href="../../styles.css">
   <title>I Don't Speak Code - Mixed - HTML + CSS + Python</title>
   <script>
+    var isUnstable=false;
+    Object.defineProperty(window, 'enableUnstable', {
+    get: function () {
+      console.log("Functions:");
+      console.log("   download()");
+      console.log("more stuff soon!");
+      document.getElementById("wow-unstable-div").innerHTML = "UNSTABLE:<br><button onclick=\"download();\">Download</button>";
+      isUnstable = true;
+      return null
+    }});
+    
+    console.log("NOTE: Downloading is available, but it is quite broken. Type \"enableUnstable\" to use.");
     function updateLink(){
         var htmltext = document.getElementById("HTMLtextareaID").value;
         var titletext = document.getElementById("TITLEtextareaID").value;
@@ -21,6 +33,7 @@
           '    printed_output = stdout.getvalue()\n' +
           '    output_div.innerText = str(result) + "\\n\\n" + printed_output'
           */
+         
         var htmlContent = 
             "<html><head><title>" + titletext + "</title>" + 
             '<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css"/>' +
@@ -32,6 +45,31 @@
 
           // Set the data URL as the href attribute of an anchor element
         document.getElementById("wow-link-div").innerHTML = "data:text/html, " + encodedHtmlContent;
+}
+function download() {
+  if (isUnstable){
+  var htmltext = document.getElementById("HTMLtextareaID").value;
+  var titletext = document.getElementById("TITLEtextareaID").value;
+  var pytext = document.getElementById("PYtextareaID").value;
+  var csstext = document.getElementById("CSStextareaID").value;
+  var htmlContent = 
+    "<html><head><title>" + titletext + 
+    "</title><link rel='stylesheet' href='https://pyscript.net/releases/2024.1.1/core.css'/" +
+    '<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></sc'+'ript>' + + 
+    "<style>" + csstext + "</style></head><body>" + htmltext + "<py-script>"+pytext+"</py-script></body></html>";
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(htmlContent));
+  element.setAttribute('download', prompt("Name of file?", "thing.html"));
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+  }else{
+    console.log("Unstable! Type enableUnstable to enable this.")
+  }
 }
   </script>
 </head>
@@ -47,6 +85,7 @@
     <textarea id="CSStextareaID" oninput="updateLink()"></textarea><br>
     Python: <br>
     <textarea id="PYtextareaID" oninput="updateLink()"></textarea><br>
+    <div id="wow-unstable-div"></div><br>
   </div>
 </body>
 
